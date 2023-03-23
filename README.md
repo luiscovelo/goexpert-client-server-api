@@ -73,6 +73,7 @@ quotation save successful
 ```
 
 Para visualizar o resultado gravado em arquivo, execute o comando abaixo:
+> PS: Antes de executar, confirme se você está no diretório `client-server-api`.
 
 ```
 cat client/cotacao.txt
