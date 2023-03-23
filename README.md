@@ -46,24 +46,36 @@ Caso esteja em outro sistema operacional, procure como instalar o compilador GCC
 
 O projeto contem dois diretórios, um para a aplicação do servidor e outro para a aplicação do cliente.
 
-Esteja na raiz do diretório `client-server-api`, abra dois terminais ou abra somente um e faça o split para dividir em duas partes.
+Esteja na raiz do diretório `goexpert-client-server-api`, abra dois terminais ou abra somente um e faça o split para dividir em duas partes.
 
 ### 1. Servidor
+
+Entre no diretório do servidor:
+
+```
+cd server/
+```
 
 Execute o servidor com o seguinte comando abaixo:
 
 ```
-cd server/ && go run cmd/api/server.go
+go run cmd/api/server.go
 ```
 
 Caso resulte em succeso, nosso servidor rodando em http://localhost:8080.
 
 ### 2. Cliente
 
+Entre no diretório do cliente:
+
+```
+cd client/
+```
+
 Execute o cliente com o seguinte comando abaixo:
 
 ```
-cd client/ && go run client.go
+go run client.go
 ```
 
 Caso resulte em sucesso, será printado no console a seguinte informação:
@@ -73,8 +85,8 @@ quotation save successful
 ```
 
 Para visualizar o resultado gravado em arquivo, execute o comando abaixo:
-> PS: Antes de executar, confirme se você está no diretório `client-server-api`.
+> O arquivo está salvo no seguinte path: _goexpert-client-server-api/client/cotacao.txt_
 
 ```
-cat client/cotacao.txt
+cat cotacao.txt
 ```
