@@ -15,6 +15,11 @@ type Quotation struct {
 	Bid string `json:"bid"`
 }
 
+type ErrorResponse struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
 	defer cancel()
@@ -36,18 +41,29 @@ func main() {
 		panic(err)
 	}
 
-	var quotation Quotation
-	err = json.Unmarshal(body, &quotation)
+	if resp.StatusCode == http.StatusOK {
+		var quotation Quotation
+		err = json.Unmarshal(body, &quotation)
+		if err != nil {
+			panic(err)
+		}
+
+		err = saveQuotation(&quotation)
+		if err != nil {
+			panic(err)
+		}
+
+		log.Println("quotation saved successful")
+		return
+	}
+
+	var errResp ErrorResponse
+	err = json.Unmarshal(body, &errResp)
 	if err != nil {
 		panic(err)
 	}
 
-	err = saveQuotation(&quotation)
-	if err != nil {
-		panic(err)
-	}
-
-	log.Println("quotation saved successful")
+	log.Printf("error: %s", errResp.Message)
 }
 
 func saveQuotation(quotation *Quotation) error {
